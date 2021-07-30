@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "550521785452",
+    "project_id": "xeroxproject-70f1f",
+    "storage_bucket": "xeroxproject-70f1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550521785452:android:dd8e8b8549ee8a22005c49",
+        "android_client_info": {
+          "package_name": "com.xeroxproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550521785452-p37ho98kvmu5cgok7rhchigmc7v1nlvs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xeroxproject",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "550521785452-4s1dpv6pbe58hh19lpvh5kcdsg1vq81v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBn4VUeBmIGJMp_YlbUJUXjXtC1J0-FYMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550521785452-4s1dpv6pbe58hh19lpvh5kcdsg1vq81v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "550521785452-60vmdg16urgopniob431s9jab5o7uqgh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.XeroxProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

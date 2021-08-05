@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useContext } from "react";
+import React, {Fragment, useState, useContext} from 'react';
 import {
   View,
   Text,
@@ -8,37 +8,36 @@ import {
   Platform,
   TouchableOpacity,
   ScrollView,
-} from "react-native";
-import { Input, Button, Icon } from "react-native-elements";
+} from 'react-native';
+import {Input, Button, Icon} from 'react-native-elements';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import SocialButton from "../components/SocialButton";
-import { Formik } from "formik";
-import * as yup from "yup";
-import { AuthContext } from "../navigation/AuthProvider";
+} from 'react-native-responsive-screen';
+import SocialButton from '../components/SocialButton';
+import {Formik} from 'formik';
+import * as yup from 'yup';
+import {AuthContext} from '../navigation/AuthProvider';
 
 const validation = yup.object({
-  email: yup.string("Enter your Email Number").required("Email is required"),
+  email: yup.string('Enter your Email Number').required('Email is required'),
   password: yup
     .string()
-    .required("Please enter a password")
+    .required('Please enter a password')
     .matches(
-      "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
-      "Min. 8 characters - uppercase, lowercase , number & symbol"
+      '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$',
+      'Min. 8 characters - uppercase, lowercase , number & symbol',
     ),
 });
 
-const Login = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
 
-  const { login, error } = useContext(AuthContext);
+  const {login, googleLogin, fbLogin, error} = useContext(AuthContext);
 
-  const onSignIn = (values) => {
-    console.log("Values", values);
+  const onSignIn = values => {
     setEmail(values.email);
     setPassword(values.password);
     login(values.email, values.password);
@@ -48,39 +47,35 @@ const Login = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <ImageBackground
-          source={require("../assets/LoginBackground.jpeg")}
-          style={{ height: hp("100%"), width: wp("100%") }}
-        >
+          source={require('../assets/LoginBackground.jpeg')}
+          style={{height: hp('100%'), width: wp('100%')}}>
           <View style={styles.loginContainer}>
             <Formik
               initialValues={{
-                email: "",
-                password: "",
+                email: '',
+                password: '',
               }}
               validationSchema={validation}
               onSubmit={(values, actions) => {
-                console.log("OnSumbut formik props");
+                console.log('OnSumbut formik props');
                 onSignIn(values);
               }}
-              validateOnChange={true}
-            >
-              {(formikProps) => (
+              validateOnChange={true}>
+              {formikProps => (
                 <Fragment>
-                  <View
-                    style={{ alignItems: "center", marginBottom: hp("5%") }}
-                  >
-                    <Text style={{ fontSize: hp("4%") }}>Sign In</Text>
+                  <View style={{alignItems: 'center', marginBottom: hp('5%')}}>
+                    <Text style={{fontSize: hp('4%')}}>Sign In</Text>
                   </View>
                   <View>
                     <Input
                       name="email"
                       value={formikProps.values.email}
                       placeholder="Email"
-                      onChangeText={formikProps.handleChange("email")}
-                      inputStyle={{ fontSize: hp("1.9%") }}
+                      onChangeText={formikProps.handleChange('email')}
+                      inputStyle={{fontSize: hp('1.9%')}}
                       placeholderTextColor="#000"
                       inputContainerStyle={styles.input}
-                      onBlur={formikProps.handleBlur("email")}
+                      onBlur={formikProps.handleBlur('email')}
                       leftIcon={
                         <Icon type="ionicon" name="mail-outline" size={25} />
                       }
@@ -89,11 +84,10 @@ const Login = ({ navigation }) => {
                     {formikProps.touched.email && formikProps.errors.email && (
                       <View
                         style={{
-                          justifyContent: "center",
-                          alignSelf: "center",
-                        }}
-                      >
-                        <Text style={{ color: "red" }}>
+                          justifyContent: 'center',
+                          alignSelf: 'center',
+                        }}>
+                        <Text style={{color: 'red'}}>
                           {formikProps.touched.email &&
                             formikProps.errors.email}
                         </Text>
@@ -104,12 +98,12 @@ const Login = ({ navigation }) => {
                       name="password"
                       secureTextEntry={showPassword}
                       value={formikProps.values.password}
-                      onChangeText={formikProps.handleChange("password")}
+                      onChangeText={formikProps.handleChange('password')}
                       placeholder="Password"
                       placeholderTextColor="#000"
                       inputContainerStyle={styles.input}
-                      inputStyle={{ fontSize: hp("1.9%") }}
-                      onBlur={formikProps.handleBlur("password")}
+                      inputStyle={{fontSize: hp('1.9%')}}
+                      onBlur={formikProps.handleBlur('password')}
                       leftIcon={
                         <Icon
                           type="ionicon"
@@ -120,29 +114,28 @@ const Login = ({ navigation }) => {
                       rightIcon={
                         <Icon
                           type="ionicon"
-                          name={showPassword ? "eye-off" : "eye"}
+                          name={showPassword ? 'eye-off' : 'eye'}
                           size={25}
                           onPress={() => setShowPassword(!showPassword)}
                         />
                       }
-                      rightIconContainerStyle={{ marginRight: wp("1.5%") }}
+                      rightIconContainerStyle={{marginRight: wp('1.5%')}}
                     />
                     {formikProps.touched.password &&
                       formikProps.errors.password && (
                         <View
                           style={{
-                            justifyContent: "center",
-                            alignSelf: "center",
-                          }}
-                        >
-                          <Text style={{ color: "red" }}>
+                            justifyContent: 'center',
+                            alignSelf: 'center',
+                          }}>
+                          <Text style={{color: 'red'}}>
                             {formikProps.touched.password &&
                               formikProps.errors.password}
                           </Text>
                         </View>
                       )}
                   </View>
-                  <View style={{ alignSelf: "center", marginTop: hp("2%") }}>
+                  <View style={{alignSelf: 'center', marginTop: hp('2%')}}>
                     <Button
                       buttonStyle={styles.buttonStyle}
                       title="Login"
@@ -153,26 +146,24 @@ const Login = ({ navigation }) => {
                       onPress={formikProps.handleSubmit}
                     />
                   </View>
-                  {error != "" && (
+                  {error != '' && (
                     <View
                       style={{
-                        justifyContent: "center",
-                        alignSelf: "center",
-                        marginTop: hp("2%"),
-                      }}
-                    >
-                      <Text style={{ color: "red", fontSize: hp("2.5%") }}>
+                        justifyContent: 'center',
+                        alignSelf: 'center',
+                        marginTop: hp('2%'),
+                      }}>
+                      <Text style={{color: 'red', fontSize: hp('2.5%')}}>
                         Invalid Password
                       </Text>
                     </View>
                   )}
                   <TouchableOpacity
                     style={styles.forgotButton}
-                    onPress={() => {}}
-                  >
+                    onPress={() => {}}>
                     <Text style={styles.navButtonText}>Forgot Password?</Text>
                   </TouchableOpacity>
-                  {Platform.OS === "android" ? (
+                  {Platform.OS === 'android' ? (
                     <View>
                       <SocialButton
                         buttonTitle="Sign In with Facebook"
@@ -192,8 +183,7 @@ const Login = ({ navigation }) => {
                   ) : null}
                   <TouchableOpacity
                     style={styles.forgotButton}
-                    onPress={() => navigation.navigate("SignUp")}
-                  >
+                    onPress={() => navigation.navigate('SignUp')}>
                     <Text style={styles.navButtonText}>
                       Don't have an acount? Create here
                     </Text>
@@ -211,41 +201,41 @@ const Login = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: hp("100%"),
-    width: wp("100%"),
+    height: hp('100%'),
+    width: wp('100%'),
   },
   loginContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: hp("10%"),
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: hp('10%'),
   },
   input: {
-    paddingLeft: wp("2%"),
-    height: hp("6 %"),
-    width: wp("90%"),
+    paddingLeft: wp('2%'),
+    height: hp('6 %'),
+    width: wp('90%'),
     borderWidth: 1,
-    borderRadius: hp("1%"),
+    borderRadius: hp('1%'),
   },
   buttonStyle: {
     borderRadius: 10,
-    width: wp("80%"),
-    height: hp("6%"),
+    width: wp('80%'),
+    height: hp('6%'),
     borderWidth: 1,
-    borderColor: "#808080",
+    borderColor: '#808080',
   },
   buttonTextStyle: {
-    color: "#000",
-    fontSize: hp("2.5%"),
-    fontWeight: "bold",
+    color: '#000',
+    fontSize: hp('2.5%'),
+    fontWeight: 'bold',
   },
   forgotButton: {
     marginVertical: 35,
   },
   navButtonText: {
     fontSize: 18,
-    fontWeight: "500",
-    color: "#2e64e5",
-    fontFamily: "Lato-Regular",
+    fontWeight: '500',
+    color: '#2e64e5',
+    fontFamily: 'Lato-Regular',
   },
 });
 

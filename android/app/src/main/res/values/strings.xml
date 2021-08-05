@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">XeroxProject</string>
+    <string name="facebook_app_id">927880291108122</string>
+    <string name="fb_login_protocol_scheme">fb927880291108122</string>
 </resources>
